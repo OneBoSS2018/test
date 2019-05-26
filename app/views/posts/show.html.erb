@@ -6,9 +6,38 @@
 </p>
 
 <p>
+  <strong>A:</strong>
+  <%= @post.a %>
+</p>
+
+<p>
+  <strong>B:</strong>
+  <%= @post.b %>
+</p>
+
+<p>
+  <strong>C:</strong>
+  <%= @post.c %>
+</p>
+
+<p>
+  <strong>D:</strong>
+  <%= @post.d %>
+</p>
+<% if current_user && current_user.admin %>
+<p>
+  <strong>TRUE Otvet:</strong>
+  <%= @post.otvet %>
+</p>
+<% end %>
+<p>
   <strong>User:</strong>
   <%= @post.user.username %>
 </p>
 <% if current_user && current_user.admin %>
 <%= link_to 'Edit', edit_post_path(@post) %> <% end %>|
 <%= link_to 'Back', posts_path %>
+
+<%= render 'comments/comment' %>
+
+

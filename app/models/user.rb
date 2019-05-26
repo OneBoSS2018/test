@@ -7,4 +7,7 @@ class User < ApplicationRecord
  def username
  	return self.email.split('@')[0].capitalize 
  end
+
+ has_many :posts
+ has_many :comments, dependent: :destroy
 end
