@@ -1,0 +1,13 @@
+<h1>Helowww leegeza</h1>
+
+<% if current_user %>
+<%= link_to "Delete", destroy_user_session_path, method: :delete %>
+<% else %>
+<%= link_to "Sign_up", new_user_registration_path  %>
+
+<%= link_to "Log_up", new_user_session_path  %>
+
+<% end %>
+<p>
+<%= link_to "Post", posts_path %>
+</p>	
