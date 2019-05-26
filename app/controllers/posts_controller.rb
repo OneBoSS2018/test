@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :post_owner]
   before_action :authenticate_user!, except: [:show, :index]
+  before_action :post_owner, only: [:destroy, :update, :edit]
   # GET /posts
   # GET /posts.json
   def index
@@ -68,6 +69,13 @@ class PostsController < ApplicationController
     def set_post
       @post = Post.find(params[:id])
     end
+
+    def post_owner
+  unless current_user.id == @post.user_id
+    flash[:notice] = "You shall not pass!"
+    redirect_to @post
+  end
+end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
